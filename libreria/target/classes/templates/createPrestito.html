@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Inserisci Auto</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+	crossorigin="anonymous">
+</head>
+<body>
+	<header class="container-fluid" th:insert="fragments/header.html"></header>
+
+	<div class="container ">
+
+		<div class="card mt-5 ">
+			<form th:action="@{/prestito/add/} + ${utente.id}" method="POST"
+				th:object="${prestito}">
+				<div class="card-head"></div>
+				<div class="card-body">
+					<div class="row ">
+						<div class="col-4 ">
+							<label for="inizio">Data Inizio</label> <input type="date"
+								th:field="*{inizio}" class="form-control" id="inizio">
+						</div>
+						<div class="col-4">
+							<label for="fine">Data Fine</label> <input type="date"
+								th:field="*{fine}" class="form-control" id="fine">
+						</div>
+						<div class="col-4">
+							<label for="select">Libri</label> 
+							<select name="id_libro" id="select" class="form-select">
+								<option selected>Seleziona Libro</option>
+								
+								<option th:each="libro : ${libri}" th:value="${libro.id}" >
+								<span th:text="${libro.nome}"></span>
+								</option>
+							</select>
+						</div>
+
+
+
+					</div>
+				</div>
+				<div class="card-footer">
+					<button type="submit" class="btn btn-primary">Inserisci</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

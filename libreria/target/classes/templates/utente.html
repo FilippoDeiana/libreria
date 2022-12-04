@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bootstrap demo</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+	crossorigin="anonymous">
+</head>
+<body>
+
+	<header class="container-fluid" th:insert="fragments/header.html"></header>
+
+	<br>
+
+	<div class="container col-5">
+
+		<div class="card" th:object="${utente}">
+			<div class="card-header">
+				Nome Utente: <span th:text="${utente.nome}"></span>
+			</div>
+
+			<div class="card-body">
+				<h5 class="card-title">Prestito:</h5>
+
+				<ul class="list-group">
+					<li th:each="prestito : ${utente.prestito}" class="list-group-item">
+
+						<div class="row">
+							<div class="col">
+								Data inizio: <span th:text="${prestito.inizio}"></span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col">
+								Data fine: <span th:text="${prestito.fine}"></span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col">
+								Libro : <span th:text="${prestito.libro.nome}"></span> | Autore: <span th:text="${prestito.libro.autore}"></span>
+							</div>
+						</div>
+					</li>
+				</ul>
+
+			</div>
+			<div class="card-footer pe-5">
+				<a th:href="@{/prestito/add/}+${utente.id}" class="btn btn-primary">Inserisci visita</a>
+			</div>
+		</div>
+	</div>
+
+
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js"
+		integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+		crossorigin="anonymous"></script>
+</body>
+</html>
